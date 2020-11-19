@@ -1,0 +1,17 @@
+https://butik.mad.coop.dk/frugt-og-groent/c-5?pageSize=364&lastFacet=pageSize
+https://butik.mad.coop.dk/kolonial/c-447?pageSize=1713&lastFacet=pageSize
+https://butik.mad.coop.dk/koed/c-69?pageSize=260&lastFacet=pageSize
+https://butik.mad.coop.dk/fisk/c-141?pageSize=136&lastFacet=pageSize
+https://butik.mad.coop.dk/palaeg/c-168?pageSize=334&lastFacet=pageSize
+https://butik.mad.coop.dk/nem-mad/c-206?pageSize=262&lastFacet=pageSize
+https://butik.mad.coop.dk/mejeri/c-229?pageSize=417&lastFacet=pageSize
+https://butik.mad.coop.dk/broed-og-kager/c-265?pageSize=365&lastFacet=pageSize
+https://butik.mad.coop.dk/vin/c-307?pageSize=946&lastFacet=pageSize
+https://butik.mad.coop.dk/drikkevarer/c-385?pageSize=979&lastFacet=pageSize
+https://butik.mad.coop.dk/frost/c-562?pageSize=328&lastFacet=pageSize
+https://butik.mad.coop.dk/kiosk/c-596?pageSize=711&lastFacet=pageSize
+https://butik.mad.coop.dk/pleje/c-645?pageSize=607&lastFacet=pageSize
+https://butik.mad.coop.dk/baby-og-boern/c-686?pageSize=232&lastFacet=pageSize
+https://butik.mad.coop.dk/husholdning/c-743?pageSize=484&lastFacet=pageSize
+https://butik.mad.coop.dk/dyremad-og-tilbehoer/c-796?pageSize=212&lastFacet=pageSize
+https://butik.mad.coop.dk/storkoeb/c-820?pageSize=51&lastFacet=pageSize
