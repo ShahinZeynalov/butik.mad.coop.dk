@@ -26,7 +26,7 @@ class CoopScraper():
 
     def coop_list(self):
 
-        with open('scraped_urls.txt', 'r') as file:
+        with open('scraped_urls7500-10000.txt', 'r') as file:
             urls = file.readlines()
         with open(f'all_scraped_data/{self.file_name}.csv', 'a+', newline='') as file:
             writer = csv.writer(file)
