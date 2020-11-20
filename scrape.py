@@ -13,7 +13,7 @@ class CoopScraper():
     def __init__(self):
         self.file_name = self.create_file()
         opts = Options()
-        opts.headless = True
+        opts.headless = False
         profile = webdriver.FirefoxProfile()
 
         profile.set_preference("dom.webnotifications.enabled", False)
@@ -24,7 +24,7 @@ class CoopScraper():
 
     def coop_list(self):
 
-        with open('scraped_urls7500-10000.txt', 'r') as file:
+        with open('remaining_urls.txt', 'r') as file:
             urls = file.readlines()
         with open(f'all_scraped_data/{self.file_name}.csv', 'a+', newline='') as file:
             writer = csv.writer(file)
@@ -57,15 +57,18 @@ class CoopScraper():
                 try:
                     product_header = basic_info_wrap_div.find_element_by_tag_name('p').text
                 except:
-                    product_name=''
+                    product_header = ''
                 try:
-                    product_name = basic_info_wrap_div.find_element_by_class_name('c-product-detail__title').text
+                    product_name = basic_info_wrap_div.find_element_by_class_name('relative').text
                 except:
                     product_name=''
                 try:
                     basic_info = basic_info_wrap_div.find_element_by_class_name('c-product-detail__product-info').text
                 except:
-                    basic_info = ''
+                    try:
+                        basic_info = basic_info_wrap_div.find_element_by_class_name('leading-tight').text
+                    except:
+                        basic_info = ''
                 try:
                     labels = [i.get_attribute('title') for i in basic_info_wrap_div.find_elements_by_tag_name('i')]
                 except:
@@ -77,7 +80,7 @@ class CoopScraper():
                     current_price = ''
                 try:
                     original_price = self.browser.find_element_by_class_name('line-through').text
-                    original_price = original_price[:-3]+'.'+original_price[-2:]
+                    # original_price = original_price[:-3]+'.'+original_price[-2:]
                 except:
                     original_price = ''
                 try:
@@ -86,7 +89,9 @@ class CoopScraper():
                     weight = ''
 
                 try:
-                    self.browser.execute_script("window.scrollTo(0, window.scrollY + 500)") 
+                    wrap = self.browser.find_element_by_class_name('tabs-component-wrap')
+                    self.browser.execute_script("window.scrollTo(0, window.scrollY + 600)") 
+                    # self.browser.execute_script("arguments[0].scrollIntoView();", wrap)
                     time.sleep(1)
                     self.browser.save_screenshot('detail.png')
                     tabs = self.browser.find_elements_by_class_name('tabs-component-tab-a')
@@ -102,6 +107,14 @@ class CoopScraper():
                             ingrediencer = panel_text
                         elif tab_text.lower() == 'tilberedning':
                             tilbereding = panel_text
+                        elif tab_text.lower() == 'producent':
+                            producent = panel_text
+                        elif tab_text.lower() == 'land':
+                            land = panel_text
+                        elif tab_text.lower() == 'område':
+                            omrade = panel_text
+                        elif tab_text.lower() == 'drue':
+                            drue = panel_text
                         else:
                             continue
                         
@@ -114,8 +127,22 @@ class CoopScraper():
                 data = [
                     breadcrumb, product_header, product_name, 
                     basic_info, labels, current_price, original_price, weight, 
-                    product_info, opbevaring, ingrediencer, tilbereding, url
+                    product_info, opbevaring, ingrediencer, tilbereding
+                    , producent, land, omrade, drue, url
                 ]
+                print('-------breadcrumb', breadcrumb)
+                print('-------product_header', product_header)
+                print('-------product_name', product_name)
+                print('-------basic_info', basic_info)
+                print('-------labels', labels)
+                print('-------current_price', current_price)
+                print('-------original_price', original_price)
+                print('-------weight', weight)
+                print('-------product_info', product_info)
+                print('-------opbevaring', opbevaring)
+                print('-------ingrediencer', ingrediencer)
+                print('-------tilbereding', tilbereding)
+                print('-------url', url)
 
                 if len(product_name) != 0:
                     writer.writerow(data)
@@ -126,7 +153,7 @@ class CoopScraper():
         header = [
             'Breadcrumb','Product header','Product name', 'Product basic info',
             'Labels', 'Current price', 'Original price', 'weight', 'product info', 'Opbevaring',
-            'Ingrediencer', 'Tilbereding', 'URL'
+            'Ingrediencer', 'Tilbereding', 'producent', 'land', 'område', 'drue', 'URL'
         ]
         new_file = open(f'all_scraped_data/{filename}.csv', 'w')
         writer = csv.writer(new_file)
